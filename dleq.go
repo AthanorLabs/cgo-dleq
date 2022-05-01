@@ -1,7 +1,7 @@
 package dleq
 
 /*
-#cgo LDFLAGS: -L${SRCDIR}/lib ./lib/libdleq.so
+#cgo LDFLAGS: -L${SRCDIR}/lib ${SRCDIR}/lib/libdleq.so
 #include "./lib/libdleq.h"
 */
 import "C"
