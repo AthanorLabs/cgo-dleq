@@ -1,0 +1,4 @@
+[submodule "lib/dleq-rs"]
+	path = lib/dleq-rs
+	url = https://github.com/noot/dleq-rs.git
+	branch = noot/cgo
