@@ -4,4 +4,4 @@ build:
 	cp lib/dleq-rs/target/release/libdleq.so lib/
 
 test: build
-	go test ./... 
+	go test
