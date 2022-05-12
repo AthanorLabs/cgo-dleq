@@ -9,7 +9,7 @@ import (
 func Test_Ed25519_Secp256k1_DLEq(t *testing.T) {
 	proof, _, err := Ed25519Secp256k1Prove()
 	require.NoError(t, err)
-	err = Ed25519Secp256k1Verify(proof)
+	_, _, err = Ed25519Secp256k1Verify(proof)
 	require.NoError(t, err)
 }
 
