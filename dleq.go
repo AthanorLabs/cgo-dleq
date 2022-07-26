@@ -35,16 +35,17 @@ type Secp256k1PublicKey []byte
 func Ed25519Secp256k1Prove() (Proof, PrivateKey, error) {
 	// TOOD: malloc instread of using "make" cause of GC?
 	proofSize := C.ed25519_secp256k1_proof_size()
-	dst := make([]byte, proofSize+Ed25519PrivateKeySize)
+	dst := make([]byte, proofSize)
 	ptr := unsafe.Pointer(&dst[0])
+	keyDst := make([]byte, Ed25519PrivateKeySize)
+	keyPtr := unsafe.Pointer(&keyDst[0])
 
-	ok := C.ed25519_secp256k1_prove((*C.char)(ptr))
+	ok := C.ed25519_secp256k1_prove((*C.char)(ptr), (*C.char)(keyPtr))
 	if byte(ok) == 0 {
 		return nil, nil, fmt.Errorf("failed to generate proof")
 	}
 
-	// first 32 bytes are private key, rest is proof
-	return Proof(dst[32:]), PrivateKey(dst[:32]), nil
+	return Proof(dst), PrivateKey(keyDst), nil
 }
 
 // Ed25519Secp256k1Verify verifies the given DLEq proof.
