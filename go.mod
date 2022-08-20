@@ -1,4 +1,4 @@
-module github.com/noot/cgo-dleq
+module github.com/athanorlabs/cgo-dleq
 
 go 1.18
 
